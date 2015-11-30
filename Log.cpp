@@ -36,7 +36,7 @@ const char SEP_SLASH = '/';
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-istream & Log::operator >> ( istream &is, Log &aLog )
+istream & operator >> ( istream &is, Log &aLog )
 // Algorithme :
 //
 {
@@ -94,13 +94,63 @@ istream & Log::operator >> ( istream &is, Log &aLog )
 
 	ss.str(temp);
 	ss >> aLog.diffGreenwich;
+
+	aLog.diffGreenwich *= coeff;
+
 	ss.clear();
 
 	is.ignore(2);
 
 	getline(is, aLog.actionType, SEP_SPACE);
+	getline(is, aLog.urlDest, SEP_SPACE);
+	getline(is, temp, SEP_QUOTE); // We'll ignore this part of the command
+	is.ignore();
+
+	getline(is, temp, SEP_SPACE);
+
+	ss.str(temp);
+	ss >> aLog.statusCode;
+	ss.clear();
+
+	getline(is, temp, SEP_SPACE);
+
+	ss.str(temp);
+	ss >> aLog.dataSize;
+	ss.clear();
+
+	is.ignore();
+
+	getline(is, aLog.urlOrigin, SEP_QUOTE);
+
+	is.ignore();
+
+	getline(is, aLog.navigatorId, SEP_QUOTE);
 
 	return is;
+} //----- Fin de operator >>
+
+ostream & operator << ( ostream &os, Log &aLog )
+// Algorithme :
+//
+{
+	cout << aLog.IpAddress << endl;
+	cout << aLog.userLogName << endl;
+	cout << aLog.authenticatedUser << endl;
+	cout << aLog.day << endl;
+	cout << aLog.month << endl;
+	cout << aLog.year << endl;
+	cout << aLog.hour << endl;
+	cout << aLog.minute << endl;
+	cout << aLog.second << endl;
+	cout << aLog.diffGreenwich << endl;
+	cout << aLog.actionType << endl;
+	cout << aLog.urlDest << endl;
+	cout << aLog.urlOrigin << endl;
+	cout << aLog.statusCode << endl;
+	cout << aLog.dataSize << endl;
+	cout << aLog.navigatorId << endl;
+
+	return os;
 } //----- Fin de operator >>
 
 //----------------------------------------------------- Méthodes publiques
