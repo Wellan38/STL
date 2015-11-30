@@ -23,7 +23,13 @@ void Analyser::GenerateGraphViz ( string fileName, bool exclude, int time)
 {
 	list<map(string, int)> occurences;
 
-	LogList::const_iterator debut =
+	LogList::const_iterator debut = logList.begin();
+	LogList::const_iterator fin = logList.end();
+
+	for ( ; debut != fin; debut ++)
+	{
+		//TODO
+	}
 
 }
 //--------------------------------------------------------Surcharge d'opérateurs
