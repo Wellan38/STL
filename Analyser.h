@@ -29,7 +29,7 @@ class Analyser
 	// Contrat:
 	//	No contract
 
-	void GenerateGraphViz ( char * fileName, bool exclude, int time);
+	void GenerateGraphViz ( string fileName, bool exclude, int time);
 	// Mode d'emploi:
 	//	Allows to generate a graphviz file that represent the travels inside the
 	//	server pages.
