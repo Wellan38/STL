@@ -1,0 +1,1 @@
+This test checks that the operator overload of >> works in class Log, so that the log files can be read properly.

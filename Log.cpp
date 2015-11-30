@@ -12,9 +12,6 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
 
 //------------------------------------------------------ Include personnel
 #include "Log.h"
@@ -122,7 +119,7 @@ istream & operator >> ( istream &is, Log &aLog )
 
 	getline(is, aLog.urlOrigin, SEP_QUOTE);
 
-	is.ignore();
+	is.ignore(2);
 
 	getline(is, aLog.navigatorId, SEP_QUOTE);
 
@@ -133,22 +130,22 @@ ostream & operator << ( ostream &os, Log &aLog )
 // Algorithme :
 //
 {
-	cout << aLog.IpAddress << endl;
-	cout << aLog.userLogName << endl;
-	cout << aLog.authenticatedUser << endl;
-	cout << aLog.day << endl;
-	cout << aLog.month << endl;
-	cout << aLog.year << endl;
-	cout << aLog.hour << endl;
-	cout << aLog.minute << endl;
-	cout << aLog.second << endl;
-	cout << aLog.diffGreenwich << endl;
-	cout << aLog.actionType << endl;
-	cout << aLog.urlDest << endl;
-	cout << aLog.urlOrigin << endl;
-	cout << aLog.statusCode << endl;
-	cout << aLog.dataSize << endl;
-	cout << aLog.navigatorId << endl;
+	os << aLog.IpAddress << endl;
+	os << aLog.userLogName << endl;
+	os << aLog.authenticatedUser << endl;
+	os << aLog.day << endl;
+	os << aLog.month << endl;
+	os << aLog.year << endl;
+	os << aLog.hour << endl;
+	os << aLog.minute << endl;
+	os << aLog.second << endl;
+	os << aLog.diffGreenwich << endl;
+	os << aLog.actionType << endl;
+	os << aLog.urlDest << endl;
+	os << aLog.urlOrigin << endl;
+	os << aLog.statusCode << endl;
+	os << aLog.dataSize << endl;
+	os << aLog.navigatorId << endl;
 
 	return os;
 } //----- Fin de operator >>

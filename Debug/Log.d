@@ -1,3 +1,3 @@
-Log.o: ../Log.cpp ../Log.h
+Log.d: ../Log.cpp ../Log.h
 
 ../Log.h:
