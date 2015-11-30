@@ -94,7 +94,7 @@ Strucutres de données:
 	parcourir l'ensemble des logs au moins une fois afin d'effectuer leur calculs. 
 	Une simple liste pourra faire l'affaire. Un parcours linéaire des logs sera alors facile à implémenter.
 	
-	Pour la génration du graphe:
+	Pour la génération du graphe:
 	On utilisera une:
 	Liste ( map(URL -> Liste(maps(URLorigine -> nombre)))).
 		L'esprit:

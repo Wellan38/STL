@@ -42,7 +42,7 @@ fi
 # stdin has been specified
 if [ -r "std.in" ]
 then 
-  sRun="$sRun <std.in"
+  sRun="$sRun std.in"
 fi
 
 # stdout has been specified

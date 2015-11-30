@@ -4,11 +4,12 @@
 
 
 //--------------------------------------------------------- Interfaces utilisées
-
+#include "Log.h"
+#include <list>
 //------------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------------ Types
-
+typedef list<Log> LogList;
 //------------------------------------------------------------------------------
 // Rôle de la classe Analyser
 // The Analyser class is capable of computing several stats on a how to declare a C++ chained listapache log file.
@@ -29,7 +30,7 @@ class Analyser
 	// Contrat:
 	//	No contract
 
-	void GenerateGraphViz ( string fileName, bool exclude, int time);
+	void GenerateGraphViz ( string fileName, bool exclude, int time );
 	// Mode d'emploi:
 	//	Allows to generate a graphviz file that represent the travels inside the
 	//	server pages.
@@ -41,7 +42,7 @@ class Analyser
 	//	t in [0,23]. If t isn't in the range, no time restriction is set.
 	//----------------------------------------------------Surcharge d'opérateurs
 	//-----------------------------------------------Constructeurs - Destructeur
-	Analyser ( string inputLogFileName);
+	Analyser ( char * inputLogFileName);
 	// Mode d'emploi:
 	//	Allows to create a new analyser upon a default input file
 	// Contrat:
