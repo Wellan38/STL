@@ -50,7 +50,7 @@ Tests
 	1.1 Vérifier que le stockage des log fonctionne.
 	1.2 Vérifier le bon format de l'heure de log.
 	1.3 Vérifier le bon enlèvement de la racine (ou sont non enlèvement)
-	1.4 Vérifier lecas d'un fichier de log mal formé?
+	1.4 Vérifier le cas d'un fichier de log mal formé?
 	
 	2.Filtres
 	

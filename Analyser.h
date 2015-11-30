@@ -41,7 +41,7 @@ class Analyser
 	//	t in [0,23]. If t isn't in the range, no time restriction is set.
 	//----------------------------------------------------Surcharge d'opérateurs
 	//-----------------------------------------------Constructeurs - Destructeur
-	Analyser ( char * inputLogFileName);
+	Analyser ( string inputLogFileName);
 	// Mode d'emploi:
 	//	Allows to create a new analyser upon a default input file
 	// Contrat:
