@@ -43,6 +43,14 @@ public:
     //		The log file should be well formated.
 
 
+    friend ostream & operator << ( ostream &os, Log &aLog );
+        // Mode d'emploi :
+        //		Displays all the attributes of the Log, line by line.
+        //
+        // Contrat :
+        //		aLog should be at least initialized properly.
+
+
 //-------------------------------------------- Constructeurs - destructeur
     Log ( const Log & aLog );
     // Mode d'emploi (constructeur de copie) :
