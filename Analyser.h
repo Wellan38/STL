@@ -4,12 +4,10 @@
 
 
 //--------------------------------------------------------- Interfaces utilisées
-#include "Log.h"
 #include <list>
 //------------------------------------------------------------------- Constantes
-
 //------------------------------------------------------------------------ Types
-typedef list<Log> LogList;
+typedef list<Log> Loglist;
 //------------------------------------------------------------------------------
 // Rôle de la classe Analyser
 // The Analyser class is capable of computing several stats on a how to declare a C++ chained listapache log file.
@@ -56,7 +54,7 @@ class Analyser
 	private :
 	//-----------------------------------------------------------Méthodes privées
 	//----------------------------------------------------------Attributs privées
-	list<Log> logList;
+	Loglist logList;
 	/*
 	 * The list containing all the logs of the file the Analyser was created with.
 	 */
