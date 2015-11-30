@@ -9,7 +9,10 @@ using namespace std;
 #include <fstream>
 #include <map>
 #include <iterator>
+#include <list>
+#include <string>
 //-------------------------------------------------------------Include personnel
+#include "Log.h"
 #include "Analyser.h"
 //------------------------------------------------------------------- Constantes
 
@@ -21,14 +24,14 @@ void Analyser::GenerateGraphViz ( string fileName, bool exclude, int time)
 //	We go through the whole logs and count the occurences of each destination URL
 //	then we send the data wanted into a file under the graphviz syntax.
 {
-	list<map(string, int)> occurences;
+	map(string, int) occurences;
 
 	LogList::const_iterator debut = logList.begin();
 	LogList::const_iterator fin = logList.end();
 
 	for ( ; debut != fin; debut ++)
 	{
-		//TODO
+
 	}
 
 }
