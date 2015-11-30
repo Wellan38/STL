@@ -1,0 +1,110 @@
+TP C++ utilisation de la STL.
+
+Analyse et synthèse d'un fichier de log. 
+
+Spécifications générales
+
+	Lecture:
+	Le programme doit être capable de lire les entrées d'un fichier de log et les stocker:
+	
+	On relève les informations suivantes:
+	AdresseIP
+	UserLog
+	AuthenticatedUser
+	l'Heure au format GMT
+	Le décalage par rapport Greenwich de l'utilisateur
+	Type d'action réalisé
+	URL demandé
+	URL d'origine
+	Code de succès de l'opération
+	Qtt de données démandées
+	Id navigateur du client
+	
+	L'url d'origine doit être tronqué s'il s'agit de l'intranet if (paramètre qui doit être aisément modifiable pour rendre le code portable).
+	
+	Toutes les informations doivent être gardés au cas où on aurait de nouvelles exigences de calculs (évolutivité / réutilisation).
+	
+	Filtres -e et -t:
+		
+	Dans le calcul des statistiques et la génération du graphe, il faudra exclure certains logs.
+		
+	-e -> on exclu les log dont le code n'est pas 200.
+	-t (entier \in [0,23]) -> on exclu les logs dont l'heure ne se trouve pas dans l'intervalle [0,23]
+		
+	Fonctions:
+	
+	10 pages les + visitées
+		
+	On affiche les 10 pages les plus visitées, avec leur nombre de visite. 
+	Cas d'égalité, on affiche plus de 10 résultats.
+		
+	Génération du graphe.
+	Attention au erreurs liées aux fichiers.
+	La syntaxe est plutôt simple donc c'est cool.
+	Vive les langages interprétés.
+		
+Tests
+
+	1.Lecture
+	
+	1.1 Vérifier que le stockage des log fonctionne.
+	1.2 Vérifier le bon format de l'heure de log.
+	1.3 Vérifier le bon enlèvement de la racine (ou sont non enlèvement)
+	1.4 Vérifier lecas d'un fichier de log mal formé?
+	
+	2.Filtres
+	
+	2.1 tests de l'option -e (types de fichiers différents)
+	2.2 tests de l'option -t (vérification de la cohérence de l'heure avec les specs)
+	
+	3.Fonctions
+	3.1 10 plus grand
+	3.1.1 tests de l'affichage des 10 plus grands (affichage dans l'ordre etc).
+	3.1.2 cas où il n'y a pas assez de pages visitées
+	3.1.3 cas d'égalité, tri selon l'ordre lexicographique?
+	
+	3.2 Génération du graphe
+	3.2.1 Production d'un fichier syntaxiquement correct
+	3.2.2 Présence de toutes les pages, pas de pages orphelines (cohérence des logs ...)
+	3.2.3 Nombre associés aux transitions correct (test notamnent d'un filtre 'succès sur le passage' code 200).
+	
+Classes
+	~~ "Diviser pour mieux régner" ~~
+
+Cas d'éxécution typique:
+	1 Lecture du fichier de log et stockage dans la structure de donnée de tous les logs.
+	2 Calculs de ce qui est demandé (10 pages les plus visitées et éventuellement génération du graphe).
+	3 Exit, réallocation de la mémoire.
+	
+On se propose d'avoir:
+
+	Une classe Log qui contient toutes les informations que l'on peut extraire d'un log.
+	La surcharge des opérateurs >> et << pourront s'avérer très utiles lors de la lecture d'un fichier de log.
+	
+	Une classe Analyser. C'est là classe 'maître' du programme. Elle possède aussi les méthodes des calculs
+	demandés par le sujet.
+	Elle sera capable au lancement du programme de lire le fichiers de log et d'en extraire les informations et de les stocker dans
+	un de ses attributs.
+	Les méthodes de statistiques s'appuieront sur ce stockage des informations pour effectuer leurs calculs respectifs.
+	Il pourra être utile de s'appuyer pour le calcul sur une structure de données temporaire afin de faciliter les calculs.
+	
+Strucutres de données:
+
+	Le stockage de tous les logs pourra se faire sans aucun tri d'aucune sorte. Les méthodes de calculs devront de toute manière
+	parcourir l'ensemble des logs au moins une fois afin d'effectuer leur calculs. 
+	Une simple liste pourra faire l'affaire. Un parcours linéaire des logs sera alors facile à implémenter.
+	
+	Pour la génration du graphe:
+	On utilisera une:
+	Liste ( map(URL -> Liste(maps(URLorigine -> nombre)))).
+		L'esprit:
+	Pour chaque URL de destination, on veut savoir touts les URL d'origine qui ont conduis à cette page et combien de fois cela s'est produit.
+	Pour la construire, on devra parcourir l'ensemble des logs. Le tri n'est pas nécessaire puisqu'il n'y a pas de notion de priorité dans la génération du graphe.
+	Pour la génération du graphe on devra parcourir cette nouvelle structure une fois et envoyer les information nécessaires vers le fichier de graphe.
+	
+	Pour le calcul des 10 pages les plus visitées:
+	On utilisera une:
+	Liste (map(URL -> nombre))
+	L'esprit:
+	On veut savoir pour chaque URL de destination combien de fois la page a été visitée.
+	On triera ensuite cette liste afin d'en extraire les 10 premiers.
