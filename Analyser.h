@@ -4,15 +4,14 @@
 
 
 //--------------------------------------------------------- Interfaces utilisées
-#include <list>
-#include "Log.h"
+
 //------------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------------
 // Rôle de la classe Analyser
-// The Anallyser class is capable of computing several stats on a how to declare a C++ chained listapache log file.
+// The Analyser class is capable of computing several stats on a how to declare a C++ chained listapache log file.
 //------------------------------------------------------------------------------
 
 class Analyser
