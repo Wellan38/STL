@@ -7,9 +7,10 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <iterator>
 //-------------------------------------------------------------Include personnel
 #include "Analyser.h"
-#include "Log.h"
 //------------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------------PUBLIC
@@ -20,25 +21,38 @@ void Analyser::GenerateGraphViz ( string fileName, bool exclude, int time)
 //	We go through the whole logs and count the occurences of each destination URL
 //	then we send the data wanted into a file under the graphviz syntax.
 {
+	list<map(string, int)> occurences;
+
+	LogList::const_iterator debut =
 
 }
 //--------------------------------------------------------Surcharge d'opérateurs
 //---------------------------------------------------Constructeurs - Destructeur
-Analyser::Analyser (string inputLogFileName)
+Analyser::Analyser ( char * inputLogFileName )
 // Algorithme
 //	We try to get all the logs from the file whose name is given as a parameter.
 {
-	ifstream input (inputLogFileName, ios::in);
+#ifdef MAP
+	cout << "-------Construction de Analyser" << endl;
+#endif
+	ifstream input ( inputLogFileName, ios::in );
 
-	if (input)
+	if ( input )
 	{	Log l;
-		while ( input >> l)
-		{	logList.push_back(l);
+		while ( input >> l )
+		{	logList.push_back( l );
 		}
 	}
 	else
 	{	cerr << "Erreur à l'ouverture du fichier" << endl;
 	}
+}
+
+Analyser::~Analyser ( )
+{
+#ifdef MAP
+	cout << "-------Destruction de Analyser" << endl;
+#endif
 }
 //---------------------------------------------------------------------PROTECTED
 
