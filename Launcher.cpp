@@ -7,11 +7,13 @@
 using namespace std;
 #include <iostream>
 #include <string>
+#include <exception>
+#include <sstream>
 //-------------------------------------------------------------Include personnel
 //------------------------------------------------------------------- Constantes
-const string HELP = string("-h");
 const string TIME = string("-t");
 const string EXCLUDE = string("-e");
+const string GRAPH = string("-g");
 //------------------------------------------------------------------------PUBLIC
 //------------------------------------------------------------Méthodes publiques
 extern void ShowManual ( );
@@ -30,45 +32,74 @@ int main ( int argc, char * argv[] )
 	}
 #endif
 
-	//No argument provided, program cannot run
+	//No argument provided, showing the manual by default
 	if ( argc == 1)
 	{
-		cout << "This program requires at least one input argument. " << endl;
-		cout << "Try option -h for help." << endl;
+		ShowManual();
 	}
 	else
 	{	//We go through all the arguments to detect all the options
 		int counter = 1;
 
 		//default configuration
-		bool exclude = false;		//value of option -e
-		int time = -1;				//value of option -t, -1 meaning no filter
+		bool exclude = false;		//value of option EXCLUDE
+		bool graph = false;			//value of option GRAPH
+		int time = -1;				//value of option TIME, -1 meaning no filter
 
-		while (counter < argc)
+		while (counter < argc -1 )	//while loop but keeping the the last argument as it is supposed to be the file to analyse.
 		{
-			if ( !HELP.compare(argv[counter]) )
+			if ( EXCLUDE.compare(argv[counter]) == 0 )
 			{
 #ifdef TEST
-				cout << "Parameter -h detected, showing manual." << endl;
-#endif
-				ShowManual();
-			}
-			else if ( !EXCLUDE.compare(argv[counter]) )
-			{
-#ifdef TEST
-				cout << "Parameter -e detected, fancy files will be excluded from the computations." << endl;
+	cout << "Parameter " << EXCLUDE << " detected." << endl;
 #endif
 				exclude = true;
 			}
-			else if ( !TIME.compare(argv[counter]) )
+			else if ( TIME.compare(argv[counter]) == 0 )
 			{
 #ifdef TEST
-				cout << "Parameter -t detected, trying to read an integer as next argument." << endl;
+	cout << "Parameter "<< TIME <<" detected." << endl;
 #endif
+				exclude = true;
+				counter ++;
+				if ( counter < argc - 1 )
+				{
+					stringstream ss( argv[counter] );
+					ss >> time;
+#ifdef TEST
+		cout << "The time constraint has a value of:" << time << endl;
+#endif
+					if ( time > 23 || time <0)
+					{
+						cerr << "Error: value not valid for " << TIME << " option:" << time;
+						cerr << endl << "Value should be in the [0,23] interval" << endl;
+					}
+				}
+				else
+				{
+					cerr << "Error: expecting a number after option " << TIME << endl;
+					return 1;
+				}
 			}
+			else if ( GRAPH.compare(argv[counter]) == 0)
+			{
+#ifdef TEST
+	cout << "Parameter " << GRAPH << " detected." << endl;
+#endif
+				counter ++;
+				if ( counter < argc - 1 )
+				{
 
+				}
+				else
+				{
+					cerr << "Error: a file for graphviz output was not provided" << endl;
+					return 1;
+				}
+			}
 			counter ++;
-		}
+		}	//End of while loop to collect arguments.
+
 	}
 	return 0;
 }
