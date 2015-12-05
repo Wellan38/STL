@@ -112,7 +112,7 @@ then
     resultGlobal=0
   fi
   # clean temporary out file
-  rm temperr.txt
+  #rm temperr.txt
 fi
 
 # compare files created if concerned

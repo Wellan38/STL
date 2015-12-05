@@ -7,8 +7,9 @@
 using namespace std;
 #include <iostream>
 #include <string>
-#include <exception>
 #include <sstream>
+#include <fstream>
+#include <exception>
 //-------------------------------------------------------------Include personnel
 //------------------------------------------------------------------- Constantes
 const string TIME = string("-t");
@@ -32,7 +33,7 @@ int main ( int argc, char * argv[] )
 	}
 #endif
 
-	//No argument provided, showing the manual by default
+	//No argument provided, showing the manual
 	if ( argc == 1)
 	{
 #ifdef TEST
@@ -76,6 +77,7 @@ int main ( int argc, char * argv[] )
 					{
 						cerr << "Error: value not valid for " << TIME << " option:" << time;
 						cerr << endl << "Value should be in the [0,23] interval" << endl;
+						return 1;
 					}
 				}
 				else
@@ -108,6 +110,16 @@ int main ( int argc, char * argv[] )
 		cout << "Now launching the computation." << endl;
 #else
 		//TODO try open the log file. send it as a stream?
+
+		try
+		{
+			ifstream logFile(argv[argc-1]);
+			cout << "file opening succedded" << endl;
+		}
+		catch (exception &e)
+		{
+			cerr << "Error: failed to open file " << argv[argc-1] << endl;
+		}
 #endif
 	}
 	return 0;

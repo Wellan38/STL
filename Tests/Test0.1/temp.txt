@@ -1,4 +1,26 @@
 1 arguments ont été passés en paramètre.
 ./../../TestMain/TP_STL
-This program requires at least one input argument. 
-Try option -h for help.
+No argument provided, launching the manual.
+---- TP_STL manual ----
+Apache log file analyser
+
+USAGE: ./TP_STL [OPTIONS]... FILE
+
+OPTIONS:
+
+   -e        :exclude the javascript, css an image files from the analysis,
+                focusing the computations on the other files.
+
+   -t <hour> :focus the computations on the logs that took place in the
+                [hour, hour+1] interval of time. 
+                The hour should be an integer in the range [0,23]
+
+   -g <file> :generate a graphviz file describing the travels from
+                a page to another. file is the name of the file in 
+                which the graph should be stored
+                If it exists already, the file will be overwritten.
+
+FILE:
+
+   The file to analyse should be the last one to be given as parameter.
+   It has to be an APACHE log format file.

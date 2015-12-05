@@ -1,2 +1,3 @@
-Ce test a pour but de vérifier la bonne détection des arguments.
-Test 0.2, 1 argument fourni.
+----Test du launcher, détection des arguments----
+0.2 -> 1 argument fourni (le nom du fichier de log, non présent dans le dossier)
+Comportement attendu: erreur

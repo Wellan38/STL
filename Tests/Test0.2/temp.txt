@@ -1,3 +1,4 @@
 2 arguments ont été passés en paramètre.
 ./../../TestMain/TP_STL
-argument1
+logfile
+Now launching the computation.
