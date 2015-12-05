@@ -5,9 +5,10 @@
 
 //--------------------------------------------------------- Interfaces utilisées
 #include <list>
+#include <string>
 //------------------------------------------------------------------- Constantes
 //------------------------------------------------------------------------ Types
-typedef list<Log> Loglist;
+typedef list <Log> Loglist;
 //------------------------------------------------------------------------------
 // Rôle de la classe Analyser
 // The Analyser class is capable of computing several stats on a how to declare a C++ chained listapache log file.

@@ -10,13 +10,26 @@ using namespace std;
 //------------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------------PUBLIC
+//------------------------------------------------------------Méthodes publiques
 int main ( int argc, char * argv[] )
 {
 #ifdef TEST
-	cout << argc << " rguments were passed as parameter" << endl;
+	cout << argc << " arguments were passed as parameter" << endl;
+
+	int i;
+	for ( i=0; i< argc; i++ )
+	{	cout << argv[i] << endl;
+	}
 #endif
+	if ( argc == 1)
+	{
+		cout << "This program requires at least one input argument. " << endl;
+		cout << "Try option -h for help." << endl;
+	}
+
+
+	return 0;
 }
-//------------------------------------------------------------Méthodes publiques
 //--------------------------------------------------------Surcharge d'opérateurs
 //---------------------------------------------------Constructeurs - Destructeur
 
