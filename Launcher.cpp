@@ -35,6 +35,9 @@ int main ( int argc, char * argv[] )
 	//No argument provided, showing the manual by default
 	if ( argc == 1)
 	{
+#ifdef TEST
+		cout << "No argument provided, launching the manual." << endl;
+#endif
 		ShowManual();
 	}
 	else
@@ -89,7 +92,7 @@ int main ( int argc, char * argv[] )
 				counter ++;
 				if ( counter < argc - 1 )
 				{
-					//TODO get the file name / try to open the file and send it to launcher class.
+					//TODO get the file name / try to open the file -> stream?
 				}
 				else
 				{
@@ -100,6 +103,12 @@ int main ( int argc, char * argv[] )
 			counter ++;
 		}	//End of while loop to collect arguments.
 
+
+#ifdef TEST
+		cout << "Now launching the computation." << endl;
+#else
+		//TODO try open the log file. send it as a stream?
+#endif
 	}
 	return 0;
 }
