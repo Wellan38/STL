@@ -1,0 +1,4 @@
+1 arguments ont été passés en paramètre.
+./../../TestMain/TP_STL
+This program requires at least one input argument. 
+Try option -h for help.
