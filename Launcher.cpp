@@ -89,7 +89,7 @@ int main ( int argc, char * argv[] )
 				counter ++;
 				if ( counter < argc - 1 )
 				{
-
+					//TODO get the file name / try to open the file and send it to launcher class.
 				}
 				else
 				{
