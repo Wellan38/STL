@@ -1,0 +1,4 @@
+----Test du launcher, détection des arguments----
+0.6 -> tous les arguments possibles fourni (-t <nombre> -e -g logfile)
+Comportement attendu: Prise en compte des arguments -t, -e et -g.
+			Erreur, nom de fichier de sortie pour l'option -g manquant.
