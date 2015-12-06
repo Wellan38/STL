@@ -11,6 +11,7 @@ using namespace std;
 #include <fstream>
 #include <exception>
 //-------------------------------------------------------------Include personnel
+#include "Analyser.h"
 //------------------------------------------------------------------- Constantes
 const string TIME = string("-t");
 const string EXCLUDE = string("-e");
@@ -105,22 +106,22 @@ int main ( int argc, char * argv[] )
 			counter ++;
 		}	//End of while loop to collect arguments.
 
+		ifstream logFile(argv[argc-1]);
 
+		if (logFile)
+		{
 #ifdef TEST
-		cout << "Now launching the computation." << endl;
+			cout << "file opening succeeded" << endl;
 #else
-		//TODO try open the log file. send it as a stream?
-
-		try
-		{
-			ifstream logFile(argv[argc-1]);
-			cout << "file opening succedded" << endl;
-		}
-		catch (exception &e)
-		{
-			cerr << "Error: failed to open file " << argv[argc-1] << endl;
-		}
+			Analyser analyser(logFile);
+			//Put the methods ... TODO
 #endif
+
+		}
+		else
+		{
+			cerr << "Error: the file " << argv[argc-1] << " could not be opened" << endl;
+		}
 	}
 	return 0;
 }
