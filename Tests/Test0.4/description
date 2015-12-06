@@ -1,0 +1,3 @@
+----Test du launcher, détection des arguments----
+0.4 -> 1 arguments fourni (-t restriction sur le temps)
+Comportement attendu: erreur, manque le nombre après l'option -t.

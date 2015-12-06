@@ -1,0 +1,5 @@
+3 arguments ont été passés en paramètre.
+./../../TestMain/TP_STL
+-t
+logfile
+Parameter -t detected.

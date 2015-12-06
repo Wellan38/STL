@@ -1,0 +1,6 @@
+3 arguments ont été passés en paramètre.
+./../../TestMain/TP_STL
+-e
+logfile
+Parameter -e detected.
+Now launching the computation.

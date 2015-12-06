@@ -1,0 +1,3 @@
+----Test du launcher, détection des arguments----
+0.3 -> 2 arguments fourni (-e exclusion de fichiers et le nom du fichier de log)
+Comportement attendu: pas d'erreur, prise en compte de l'option -e.
