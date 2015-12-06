@@ -1,0 +1,13 @@
+7 arguments ont été passés en paramètre.
+./../../TestMain/TP_STL
+-t
+4
+-e
+-g
+graphoutput.viz
+logfile
+Parameter -t detected.
+The time constraint has a value of:4
+Parameter -e detected.
+Parameter -g detected.
+Log file <logfile> opening succeeded

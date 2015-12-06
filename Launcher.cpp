@@ -111,7 +111,7 @@ int main ( int argc, char * argv[] )
 		if (logFile)
 		{
 #ifdef TEST
-			cout << "file opening succeeded" << endl;
+			cout << "Log file <" << argv[argc-1] << "> opening succeeded" << endl;
 #else
 			Analyser analyser(logFile);
 			//Put the methods ... TODO

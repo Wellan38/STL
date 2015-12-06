@@ -3,4 +3,4 @@
 -e
 logfile
 Parameter -e detected.
-Now launching the computation.
+Log file <logfile> opening succeeded
