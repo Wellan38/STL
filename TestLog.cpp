@@ -1,20 +1,23 @@
 using namespace std;
 
 #include "Log.h"
-#include <list>
+#include <vector>
 #include <iostream>
 
 int main()
 {
-	list<Log> logList;
+	std::vector<Log> logVector;
 
 	Log l;
-	while ( cin >> l)
+
+	while(cin >> l)
 	{
-		logList.push_back(l);
+		logVector.push_back(l);
 	}
 
-	for(list<Log>::iterator it = logList.begin(); it != logList.end(); ++it)
+	std::vector<Log>::iterator it;
+
+	for (it = logVector.begin(); it != logVector.end(); it++)
 	{
 		cout << *it << endl;
 	}

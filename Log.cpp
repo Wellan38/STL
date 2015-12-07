@@ -145,7 +145,7 @@ ostream & operator << ( ostream &os, Log &aLog )
 	os << aLog.urlOrigin << endl;
 	os << aLog.statusCode << endl;
 	os << aLog.dataSize << endl;
-	os << aLog.navigatorId << endl;
+	os << aLog.navigatorId;
 
 	return os;
 } //----- Fin de operator >>
@@ -163,13 +163,21 @@ ostream & operator << ( ostream &os, Log &aLog )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Log::Log ( const Log & aLog )
+Log::Log ( const Log & aLog ) : IpAddress(aLog.IpAddress),
+		userLogName(aLog.userLogName), authenticatedUser(aLog.authenticatedUser),
+		day(aLog.day), month(aLog.month), year(aLog.year), hour(aLog.hour),
+		minute(aLog.minute), second(aLog.second), diffGreenwich(aLog.diffGreenwich),
+		actionType(aLog.actionType), urlDest(aLog.urlDest), urlOrigin(aLog.urlOrigin),
+		statusCode(aLog.statusCode), dataSize(aLog.dataSize),
+		navigatorId(aLog.navigatorId)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Log>" << endl;
 #endif
+
+
 } //----- Fin de Log (constructeur de copie)
 
 

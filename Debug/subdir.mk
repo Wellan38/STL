@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Analyser.cpp \
 ../Log.cpp \
 ../TestLog.cpp 
 
 OBJS += \
+./Analyser.o \
 ./Log.o \
 ./TestLog.o 
 
 CPP_DEPS += \
+./Analyser.d \
 ./Log.d \
 ./TestLog.d 
 
