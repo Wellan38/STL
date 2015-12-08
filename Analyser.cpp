@@ -90,13 +90,19 @@ void Analyser::displayAllLogs ( )
 	}
 }
 
-bool Analyser::isToBeExcluded(Log aLog)
+bool Analyser::isToBeExcluded(Log &aLog)
 {
 	bool res = false;
 
 	int i;
 
-	for (i = 0; i < )
+	for (i = 0; i < EXTENSIONS.size(); i++)
+	{
+		if (endsWith(aLog.urlDest, EXTENSIONS[i]))
+		{
+			res = true;
+		}
+	}
 
 	return res;
 }
@@ -106,7 +112,7 @@ bool Analyser::startsWith(const string& s1, const string& s2)
     return s2.size() <= s1.size() && s1.compare(0, s2.size(), s2) == 0;
 }
 
-static bool Analyser::endsWith (string const &fullString, string const &ending)
+static bool Analyser::endsWith (const string &fullString, const string &ending)
 {
     if (fullString.length() >= ending.length()) {
         return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));

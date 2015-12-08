@@ -61,7 +61,7 @@ class Analyser
 	// Contract:
 	//	No contract
 
-	bool isToBeExcluded(Log aLog);
+	bool isToBeExcluded(Log & aLog);
 	// Mode d'emploi:
 	//	Returns true if the extension of the destination URL is part of the list of
 	//	the documents to be excluded. Returns false otherwise.
@@ -80,8 +80,13 @@ class Analyser
 	// Contract:
 	//	No contract
 
-	//----------------------------------------------------------Attributs privées
+	//-----------------------------------------------------------Attributs privés
 	list<Log> logList;
+
+	//--------------------------------------------------------------Classes amies
+
+	friend class Log;
+
 	/*
 	 * The list containing all the logs of the file the Analyser was created with.
 	 */
