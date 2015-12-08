@@ -60,8 +60,33 @@ class Analyser
 	//	Goes through the list of logs and displays them all on the standard output.
 	// Contract:
 	//	No contract
-	//----------------------------------------------------------Attributs privées
+
+	bool isToBeExcluded(Log & aLog);
+	// Mode d'emploi:
+	//	Returns true if the extension of the destination URL is part of the list of
+	//	the documents to be excluded. Returns false otherwise.
+	// Contract:
+	//	No contract
+
+	bool startsWith(const string& s1, const string& s2);
+	// Mode d'emploi:
+	//	Returns true if s1 starts with s2, wrong otherwise.
+	// Contract:
+	//	No contract
+
+	static bool endsWith (string const &fullString, string const &ending);
+	// Mode d'emploi:
+	//	Returns true if the full string ends with the ending, wrong otherwise.
+	// Contract:
+	//	No contract
+
+	//-----------------------------------------------------------Attributs privés
 	list<Log> logList;
+
+	//--------------------------------------------------------------Classes amies
+
+	friend class Log;
+
 	/*
 	 * The list containing all the logs of the file the Analyser was created with.
 	 */
