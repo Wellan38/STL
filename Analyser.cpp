@@ -4,6 +4,7 @@
 //---------------------------------------------------------------------- INCLUDE
 
 //---------------------------------------------------------------Include système
+using namespace std;
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,9 +14,22 @@
 #include "Analyser.h"
 //------------------------------------------------------------------- Constantes
 
+const string BASE_URL = "http://intranet-if.insa-lyon.fr";
+
+const string CSS = ".css";
+const string PNG = ".png";
+const string JS = ".js";
+const vector<string> EXTENSIONS {CSS, PNG, JS}; // extensions to be excluded
+
 //------------------------------------------------------------------------PUBLIC
 
 //------------------------------------------------------------Méthodes publiques
+
+void Analyser::DisplayTenMostVisited ( bool exclude, int time )
+{
+
+}
+
 void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 {
 
@@ -75,4 +89,30 @@ void Analyser::displayAllLogs ( )
 	{	//cout << logList << endl;
 	}
 }
+
+bool Analyser::isToBeExcluded(Log aLog)
+{
+	bool res = false;
+
+	int i;
+
+	for (i = 0; i < )
+
+	return res;
+}
+
+bool Analyser::startsWith(const string& s1, const string& s2)
+{
+    return s2.size() <= s1.size() && s1.compare(0, s2.size(), s2) == 0;
+}
+
+static bool Analyser::endsWith (string const &fullString, string const &ending)
+{
+    if (fullString.length() >= ending.length()) {
+        return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
+    } else {
+        return false;
+    }
+}
+
 //------------------------------------------------------------Méthodes protégées
