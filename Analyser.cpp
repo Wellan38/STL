@@ -4,7 +4,6 @@
 //---------------------------------------------------------------------- INCLUDE
 
 //---------------------------------------------------------------Include système
-using namespace std;
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -17,6 +16,11 @@ using namespace std;
 //------------------------------------------------------------------------PUBLIC
 
 //------------------------------------------------------------Méthodes publiques
+void Analyser::DisplayTenMostVisited ( bool exclude, int time )
+{
+
+}
+
 void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 //Algorithm
 //	We go through the whole logs and count the occurences of each destination URL
