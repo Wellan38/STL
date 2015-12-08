@@ -74,7 +74,7 @@ class Analyser
 	// Contract:
 	//	No contract
 
-	static bool endsWith (string const &fullString, string const &ending);
+	static bool endsWith (const string &fullString, const string &ending);
 	// Mode d'emploi:
 	//	Returns true if the full string ends with the ending, wrong otherwise.
 	// Contract:
