@@ -18,7 +18,15 @@
 //------------------------------------------------------------Méthodes publiques
 void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 {
+	Loglist::const_iterator debut = logList.begin();
+	Loglist::const_iterator fin = logList.end();
 
+	vector<map<string, int>> listOccu = new vector<map<string, int>>();
+
+	for ( ; debut != fin; debut++)
+	{
+		if (listOccu.)
+	}
 }
 
 void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
@@ -72,7 +80,7 @@ void Analyser::displayAllLogs ( )
 	Loglist::const_iterator fin = logList.end();
 
 	for ( ; debut != fin; debut ++)
-	{	//cout << logList << endl;
+	{	cout << *debut << endl;
 	}
 }
 //------------------------------------------------------------Méthodes protégées
