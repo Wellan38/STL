@@ -9,13 +9,14 @@
 
 struct StringIntPair
 {
-	pair<string, int> aPair;
+	string aString;
+	int nb;
 
-	StringIntPair(string aString, int nb) : aPair(pair<string, int>(aString, nb)) {}
+	StringIntPair(string aString, int nb) : aString(aString), nb(nb) {}
 
 	bool operator < (const StringIntPair &p) const
 	{
-		if (aPair.second < p.aPair.second)
+		if (nb < p.nb)
 		{
 			return true;
 		}
