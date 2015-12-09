@@ -68,6 +68,13 @@ class Analyser
 	// Contract:
 	//	No contract
 
+	bool respectsTime(Log &aLog, int t);
+	// Mode d'emploi:
+	//	Returns true if the time of the log is between t and t+1.
+	//	Returns wrong otherwise.
+	// Contract:
+	//	t must be between 0 and 23.
+
 	bool startsWith(const string& s1, const string& s2);
 	// Mode d'emploi:
 	//	Returns true if s1 starts with s2, wrong otherwise.

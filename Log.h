@@ -11,6 +11,8 @@
 
 //--------------------------------------------------- Interfaces utilisées
 
+using namespace std;
+
 #include <string>
 #include <fstream>
 #include <sstream>

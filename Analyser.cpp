@@ -20,7 +20,7 @@ const string BASE_URL = "http://intranet-if.insa-lyon.fr";
 const string CSS = ".css";
 const string PNG = ".png";
 const string JS = ".js";
-const vector<string> EXTENSIONS; // extensions to be excluded
+const vector<string> EXTENSIONS = {CSS, PNG, JS}; // extensions to be excluded
 
 //------------------------------------------------------------------------PUBLIC
 
@@ -36,20 +36,28 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 	for ( ; debut != fin; debut++)
 	{
 		//Filter the different logs according to the filters passed as parameter
-		//TODO
 
+		Log it = debut;
 
+		if (!(exclude && isToBeExcluded(it) && (time > 23 || time < 0)
+			&& respectsTime(it, time)))
+		{
+			//We look into our temporary data if we have it already
+			map<string,int>::iterator trouve = mapOccurences.find((*debut).urlDest);
+			if (trouve == mapOccurences.end())
+			{	//We add the entry to the map
+				trouve = mapOccurences.begin();
+				mapOccurences.insert(trouve, pair<string, int>((*debut).urlDest, 0));
+			}
 
-		//We look into our temporary data if we have it already
-		map<string,int>::iterator trouve = mapOccurences.find((*debut).urlDest);
-		if (trouve == mapOccurences.end())
-		{	//We add the entry to the map
-			trouve = mapOccurences.begin();
-			mapOccurences.insert(trouve, pair<string, int>((*debut).urlDest, 0));
+			//We increment the int value (occurence)
+			(*trouve).second ++;
 		}
 
-		//We increment the int value (occurence)
-		(*trouve).second ++;
+		// We need to sort our temporary data to make the selection easier
+
+
+
 	}
 }
 
@@ -115,13 +123,30 @@ bool Analyser::isToBeExcluded(Log &aLog)
 	bool res = false;
 
 	unsigned int i;
+	string s = aLog.urlDest;
 
 	for (i = 0; i < EXTENSIONS.size(); i++)
 	{
-		if (endsWith(aLog.urlDest, EXTENSIONS[i]))
+		if (endsWith(s, EXTENSIONS[i]))
 		{
 			res = true;
 		}
+	}
+
+	return res;
+}
+
+bool Analyser::respectsTime(Log &aLog, int t)
+{
+	bool res;
+
+	if (t != 23)
+	{
+		res = (aLog.hour == t) || (aLog.hour == t+1 && aLog.minute == 0);
+	}
+	else
+	{
+		res = (aLog.hour == t) || (aLog.hour == 0 && aLog.minute == 0);
 	}
 
 	return res;
