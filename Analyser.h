@@ -7,15 +7,15 @@
 #include "Log.h"
 #include <list>
 
-typedef struct StringIntPair
+struct StringIntPair
 {
 	pair<string, int> aPair;
 
 	StringIntPair(string aString, int nb) : aPair(pair<string, int>(aString, nb)) {}
 
-	bool operator <= (StringIntPair &p)
+	bool operator < (const StringIntPair &p) const
 	{
-		if (aPair.second <= p.aPair.second)
+		if (aPair.second < p.aPair.second)
 		{
 			return true;
 		}

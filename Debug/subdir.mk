@@ -6,17 +6,17 @@
 CPP_SRCS += \
 ../Analyser.cpp \
 ../Log.cpp \
-../TestLog.cpp 
+../TestPair.cpp 
 
 OBJS += \
 ./Analyser.o \
 ./Log.o \
-./TestLog.o 
+./TestPair.o 
 
 CPP_DEPS += \
 ./Analyser.d \
 ./Log.d \
-./TestLog.d 
+./TestPair.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
