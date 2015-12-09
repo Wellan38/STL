@@ -12,6 +12,7 @@ int main()
 	v.push_back(StringIntPair("pair1", 2));
 	v.push_back(StringIntPair("pair2", 5));
 	v.push_back(StringIntPair("pair3", 1));
+	v.push_back(StringIntPair("pair4", 2));
 
 	vector<StringIntPair>::const_iterator it;
 
