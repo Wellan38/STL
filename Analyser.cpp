@@ -31,21 +31,25 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 	Loglist::const_iterator debut = logList.begin();
 	Loglist::const_iterator fin = logList.end();
 
-	map<std::string, int> mapOccurences = new map<std::string, int>();
+	map<std::string, int> mapOccurences;
 
 	for ( ; debut != fin; debut++)
 	{
+		//Filter the different logs according to the filters passed as parameter
+		//TODO
 
-		//Select according to filters ...
 
 
-		mapOccurences::iterator pos = mapOccurences.find((*debut).urlDest);
-		if (pos == logList.end())
+		//We look into our temporary data if we have it already
+		map<string,int>::iterator trouve = mapOccurences.find((*debut).urlDest);
+		if (trouve == mapOccurences.end())
 		{	//We add the entry to the map
-			iterator insert = mapOccurences.begin();
-			mapOccurences.insert(insert, pair<string, int>("42", 42);
+			trouve = mapOccurences.begin();
+			mapOccurences.insert(trouve, pair<string, int>((*debut).urlDest, 0));
 		}
-		pos.
+
+		//We increment the int value (occurence)
+		(*trouve).second ++;
 	}
 }
 
@@ -75,7 +79,6 @@ Analyser::Analyser ( ifstream &input )
 	cout << "-------Construction de Analyser" << endl;
 #endif
 
-	EXTENSIONS = {CSS, PNG, JS};
 
 	if ( input )
 	{	Log l;
@@ -103,7 +106,7 @@ void Analyser::displayAllLogs ( )
 	Loglist::const_iterator fin = logList.end();
 
 	for ( ; debut != fin; debut ++)
-	{	cout << (*debut) << endl;
+	{	cout << *debut << endl;
 	}
 }
 
