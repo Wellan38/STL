@@ -37,7 +37,7 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 	{
 		//Filter the different logs according to the filters passed as parameter
 
-		Log it = debut;
+		Log it = *debut;
 
 		if (!(exclude && isToBeExcluded(it) && (time > 23 || time < 0)
 			&& respectsTime(it, time)))
@@ -114,7 +114,8 @@ void Analyser::displayAllLogs ( )
 	Loglist::const_iterator fin = logList.end();
 
 	for ( ; debut != fin; debut ++)
-	{	cout << *debut << endl;
+	{	Log l = (*debut);
+		cout << l << endl;
 	}
 }
 
