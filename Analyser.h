@@ -6,6 +6,26 @@
 //--------------------------------------------------------- Interfaces utilisées
 #include "Log.h"
 #include <list>
+
+typedef struct StringIntPair
+{
+	pair<string, int> aPair;
+
+	StringIntPair(string aString, int nb) : aPair(pair<string, int>(aString, nb)) {}
+
+	bool operator <= (StringIntPair &p)
+	{
+		if (aPair.second <= p.aPair.second)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+};
+
 //------------------------------------------------------------------- Constantes
 //------------------------------------------------------------------------ Types
 using namespace std;
