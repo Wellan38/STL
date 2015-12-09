@@ -10,6 +10,7 @@ using namespace std;
 #include <string>
 #include <iterator>
 #include <map>
+#include <vector>
 //-------------------------------------------------------------Include personnel
 #include "Analyser.h"
 //------------------------------------------------------------------- Constantes
@@ -19,7 +20,7 @@ const string BASE_URL = "http://intranet-if.insa-lyon.fr";
 const string CSS = ".css";
 const string PNG = ".png";
 const string JS = ".js";
-const vector<string> EXTENSIONS {CSS, PNG, JS}; // extensions to be excluded
+const vector<string> EXTENSIONS; // extensions to be excluded
 
 //------------------------------------------------------------------------PUBLIC
 
@@ -27,19 +28,24 @@ const vector<string> EXTENSIONS {CSS, PNG, JS}; // extensions to be excluded
 
 void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 {
-
-}
-
-void Analyser::DisplayTenMostVisited ( bool exclude, int time )
-{
 	Loglist::const_iterator debut = logList.begin();
 	Loglist::const_iterator fin = logList.end();
 
-	vector<map<string, int>> listOccu = new vector<map<string, int>>();
+	map<std::string, int> mapOccurences = new map<std::string, int>();
 
 	for ( ; debut != fin; debut++)
 	{
-		if (listOccu.)
+
+		//Select according to filters ...
+
+
+		mapOccurences::iterator pos = mapOccurences.find((*debut).urlDest);
+		if (pos == logList.end())
+		{	//We add the entry to the map
+			iterator insert = mapOccurences.begin();
+			mapOccurences.insert(insert, pair<string, int>("42", 42);
+		}
+		pos.
 	}
 }
 
@@ -68,6 +74,9 @@ Analyser::Analyser ( ifstream &input )
 #ifdef MAP
 	cout << "-------Construction de Analyser" << endl;
 #endif
+
+	EXTENSIONS = {CSS, PNG, JS};
+
 	if ( input )
 	{	Log l;
 		while ( input >> l )
@@ -94,7 +103,7 @@ void Analyser::displayAllLogs ( )
 	Loglist::const_iterator fin = logList.end();
 
 	for ( ; debut != fin; debut ++)
-	{	cout << *debut << endl;
+	{	cout << (*debut) << endl;
 	}
 }
 
@@ -102,7 +111,7 @@ bool Analyser::isToBeExcluded(Log &aLog)
 {
 	bool res = false;
 
-	int i;
+	unsigned int i;
 
 	for (i = 0; i < EXTENSIONS.size(); i++)
 	{
@@ -120,7 +129,7 @@ bool Analyser::startsWith(const string& s1, const string& s2)
     return s2.size() <= s1.size() && s1.compare(0, s2.size(), s2) == 0;
 }
 
-static bool Analyser::endsWith (const string &fullString, const string &ending)
+bool Analyser::endsWith (const string &fullString, const string &ending)
 {
     if (fullString.length() >= ending.length()) {
         return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
