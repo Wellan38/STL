@@ -14,9 +14,9 @@ struct StringIntPair
 
 	StringIntPair(string aString, int nb) : aString(aString), nb(nb) {}
 
-	bool operator < (const StringIntPair &p) const
+	friend bool operator < (const StringIntPair &p1, const StringIntPair &p2)
 	{
-		if (nb < p.nb)
+		if (p1.nb < p2.nb)
 		{
 			return true;
 		}
