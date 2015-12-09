@@ -1,20 +1,32 @@
 using namespace std;
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include "Analyser.h"
-
-StringIntPair pair1("pair1", 2);
-StringIntPair pair2("pair2", 1);
 
 int main()
 {
-	if (pair1 < pair2)
+	vector<StringIntPair> v;
+
+	v.push_back(StringIntPair("pair1", 2));
+	v.push_back(StringIntPair("pair2", 5));
+	v.push_back(StringIntPair("pair3", 1));
+
+	vector<StringIntPair>::const_iterator it;
+
+	for (it = v.begin(); it != v.end(); it++)
 	{
-		cout << "pair1 < pair2" << endl;
+		cout << *it << endl;
 	}
-	else
+
+	cout << endl;
+
+	std::sort(v.begin(), v.end());
+
+	for (it = v.begin(); it != v.end(); it++)
 	{
-		cout << "pair2 <= pair1" << endl;
+		cout << *it << endl;
 	}
 
 	return 0;
