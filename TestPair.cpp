@@ -10,11 +10,11 @@ int main()
 {
 	if (pair1 < pair2)
 	{
-		cout << "pair1 <= pair2" << endl;
+		cout << "pair1 < pair2" << endl;
 	}
 	else
 	{
-		cout << "pair2 < pair1" << endl;
+		cout << "pair2 <= pair1" << endl;
 	}
 
 	return 0;
