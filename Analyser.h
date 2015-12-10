@@ -83,6 +83,7 @@ class Analyser
 	virtual ~Analyser ( );
 	// Destructor:
 	//	No contract.
+
 	//---------------------------------------------------------------------PRIVE
 	private :
 	//-----------------------------------------------------------Méthodes privées

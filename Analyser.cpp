@@ -22,7 +22,10 @@ const string BASE_URL = "http://intranet-if.insa-lyon.fr";
 const string CSS = ".css";
 const string PNG = ".png";
 const string JS = ".js";
-const vector<string> EXTENSIONS = {CSS, PNG, JS}; // extensions to be excluded
+const string JPG = ".jpg";
+const string GIF = ".gif";
+const string ICO = ".ico";
+const vector<string> EXTENSIONS = {CSS, PNG, JS, JPG, GIF, ICO}; // extensions to be excluded
 
 const int NB_TOP_PAGES_TO_DISPLAY = 10;
 
@@ -43,24 +46,27 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 
 		Log it = *debut;
 
-		if (!(exclude && isToBeExcluded(it) && (time > 23 || time < 0)
-			&& respectsTime(it, time)))
+		if (!(exclude && isToBeExcluded(it)))
 		{
-			//We look into our temporary data if we have it already
 
-			StringIntPair pair ((*debut).urlDest, 1);
-			list<StringIntPair>::iterator found = find(listOccurences.begin(), listOccurences.end(), pair);
+			if (!(time <= 23 && time >= 0 && respectsTime(it, time)))
+			{
+				//We look into our temporary data if we have it already
 
-			if (found == listOccurences.end())	//TO check
-			{
-#ifdef MAP
-		cout << "The url " << (*debut).urlDest << " was not in the list." << endl;
-#endif
-				listOccurences.push_back(pair);
-			}
-			else
-			{
-				(*found).nb ++;
+				StringIntPair pair ((*debut).urlDest, 1);
+				list<StringIntPair>::iterator found = find(listOccurences.begin(), listOccurences.end(), pair);
+
+				if (found == listOccurences.end())	//TO check
+				{
+					#ifdef MAP
+						cout << "The url " << (*debut).urlDest << " was not in the list." << endl;
+					#endif
+					listOccurences.push_back(pair);
+				}
+				else
+				{
+					(*found).nb ++;
+				}
 			}
 		}
 	}

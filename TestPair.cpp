@@ -36,5 +36,14 @@ int main()
 
 	an.DisplayTenMostVisited(true, 25);
 
-	return 0;
+//	ifstream file("testIn.txt");
+//
+//	Analyser an(file);
+//
+//	an.testExclude();
+//
+//	return 0;
+
+
+
 }
