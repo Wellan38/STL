@@ -66,6 +66,7 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 	}
 	// We need to sort our temporary data to make the top 10 selection easier
 	listOccurences.sort();
+	listOccurences.reverse();
 
 	list<StringIntPair>::const_iterator begin = listOccurences.begin();
 	int i;
@@ -113,7 +114,10 @@ Analyser::Analyser ( ifstream &input )
 	if ( input )
 	{	Log l;
 		while ( input >> l )
-		{	cout << l << endl;
+		{
+#ifdef MAP
+			cout << l << endl;
+#endif
 			logList.push_back( l );
 		}
 	}
