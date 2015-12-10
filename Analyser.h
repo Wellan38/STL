@@ -30,6 +30,11 @@ struct StringIntPair
 	{
 		return p1.aString == p2.aString;
 	}
+
+	friend ostream& operator << (ostream& os, const StringIntPair& p)
+	{
+		return os << p.aString << ": " << p.nb;
+	}
 };
 
 //------------------------------------------------------------------- Constantes
