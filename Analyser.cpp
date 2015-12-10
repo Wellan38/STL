@@ -175,11 +175,15 @@ bool Analyser::respectsTime(Log &aLog, int t)
 
 	if (t != 23)
 	{
-		res = (aLog.hour == t) || (aLog.hour == t+1 && aLog.minute == 0);
+		res = ((aLog.hour - aLog.diffGreenwich) == t) ||
+			  ((aLog.hour - aLog.diffGreenwich) == t+1 &&
+			   aLog.minute == 0 && aLog.second == 0);
 	}
 	else
 	{
-		res = (aLog.hour == t) || (aLog.hour == 0 && aLog.minute == 0);
+		res = ((aLog.hour - aLog.diffGreenwich) == t) ||
+			  ((aLog.hour - aLog.diffGreenwich) == 0 &&
+			   aLog.minute == 0 && aLog.second == 0);
 	}
 
 	return res;

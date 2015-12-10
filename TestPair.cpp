@@ -30,11 +30,11 @@ int main()
 //		cout << *it << endl;
 //	}
 
-	ifstream file("anonyme.log");
+	ifstream file("testIn.txt");
 
 	Analyser an(file);
 
-	an.DisplayTenMostVisited(true, 25);
+	an.DisplayTenMostVisited(true,9);
 
 //	ifstream file("testIn.txt");
 //

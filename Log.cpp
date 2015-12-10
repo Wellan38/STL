@@ -93,6 +93,7 @@ istream & operator >> ( istream &is, Log &aLog )
 	ss >> aLog.diffGreenwich;
 
 	aLog.diffGreenwich *= coeff;
+	aLog.diffGreenwich /= 100;
 
 	ss.clear();
 
