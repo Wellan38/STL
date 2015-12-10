@@ -11,6 +11,8 @@ using namespace std;
 #include <iterator>
 #include <map>
 #include <vector>
+#include <algorithm>
+#include <exception>
 //-------------------------------------------------------------Include personnel
 #include "Analyser.h"
 //------------------------------------------------------------------- Constantes
@@ -22,6 +24,8 @@ const string PNG = ".png";
 const string JS = ".js";
 const vector<string> EXTENSIONS = {CSS, PNG, JS}; // extensions to be excluded
 
+const int NB_TOP_PAGES_TO_DISPLAY = 10;
+
 //------------------------------------------------------------------------PUBLIC
 
 //------------------------------------------------------------Méthodes publiques
@@ -31,7 +35,7 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 	Loglist::const_iterator debut = logList.begin();
 	Loglist::const_iterator fin = logList.end();
 
-	map<std::string, int> mapOccurences;
+	list<StringIntPair> listOccurences;
 
 	for ( ; debut != fin; debut++)
 	{
@@ -43,21 +47,39 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 			&& respectsTime(it, time)))
 		{
 			//We look into our temporary data if we have it already
-			map<string,int>::iterator trouve = mapOccurences.find((*debut).urlDest);
-			if (trouve == mapOccurences.end())
-			{	//We add the entry to the map
-				trouve = mapOccurences.begin();
-				mapOccurences.insert(trouve, pair<string, int>((*debut).urlDest, 0));
+
+			StringIntPair pair ((*debut).urlDest, 1);
+			list<StringIntPair>::iterator found = find(listOccurences.begin(), listOccurences.end(), pair);
+
+			if (found == listOccurences.end())	//TO check
+			{
+#ifdef MAP
+		cout << "The url " << (*debut).urlDest << " was not in the list." << endl;
+#endif
+				listOccurences.push_back(pair);
 			}
-
-			//We increment the int value (occurence)
-			(*trouve).second ++;
+			else
+			{
+				(*found).nb ++;
+			}
 		}
+	}
+	// We need to sort our temporary data to make the top 10 selection easier
+	listOccurences.sort();
 
-		// We need to sort our temporary data to make the selection easier
+	list<StringIntPair>::const_iterator begin = listOccurences.begin();
+	int i;
+	bool sameRank = false;	//Used to check if the i+1 item in the list has the same amount of views as the ith element.
+							//In which case it has to be displayed.
+	const int SIZE = listOccurences.size();
+	for ( i=0; (i < NB_TOP_PAGES_TO_DISPLAY || sameRank) && i < SIZE; i++)
+	{
+		StringIntPair p = *(begin++);
+		cout << p.aString << " (" << p.nb << " hits)" << endl;
 
-
-
+		list<StringIntPair>::const_iterator next = begin;
+		next ++;
+		sameRank = (i+1 < SIZE) && (p.nb == (*(next)).nb);
 	}
 }
 

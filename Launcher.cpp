@@ -115,6 +115,7 @@ int main ( int argc, char * argv[] )
 #else
 			Analyser analyser(logFile);
 			//Put the methods ... TODO
+			analyser.DisplayTenMostVisited(exclude, time);
 #endif
 
 		}
