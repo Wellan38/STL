@@ -25,6 +25,11 @@ struct StringIntPair
 			return false;
 		}
 	}
+
+	friend bool operator == (const StringIntPair &p1, const StringIntPair &p2)
+	{
+		return p1.aString == p2.aString;
+	}
 };
 
 //------------------------------------------------------------------- Constantes
