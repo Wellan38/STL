@@ -46,17 +46,17 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 	{
 		//Filter the different logs according to the filters passed as parameter
 
-		Log it = *debut;
+		Log log = *debut;
 
-		if (!(exclude && isToBeExcluded(it)) && !respectsTime(it, time) && operationSuccessful(it))
+		if (passesFilters(log, time, exclude))
 		{
 
 			//We look into our temporary data if we have it already
 
-			StringIntPair pair ((*debut).urlDest, 1);
+			StringIntPair pair (log.urlDest, 1);
 			list<StringIntPair>::iterator found = find(listOccurences.begin(), listOccurences.end(), pair);
 
-			if (found == listOccurences.end())	//TO check
+			if (found == listOccurences.end())
 			{
 				#ifdef MAP
 					cout << "The url " << (*debut).urlDest << " was not in the list." << endl;
@@ -94,13 +94,30 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 //	We go through the whole logs and count the occurences of each destination URL
 //	then we send the data wanted into a file under the graphviz syntax.
 {
-	//map(string, int) occurences;
+	//Each destination url has several origin url, each being associated with a number
+	//			multimap	<String  ,       StringIntPair>
+	multimap<string, StringIntPair> occurences;
 
-	Loglist::const_iterator debut = logList.begin();
-	Loglist::const_iterator fin = logList.end();
+	Loglist::const_iterator begin = logList.begin();
+	Loglist::const_iterator end = logList.end();
 
-	for ( ; debut != fin; debut ++)
-	{
+	for ( ; begin != end; begin ++)
+	{	Log log = (*begin);
+
+		if (passesFilters(log, time, exclude))
+		{	StringIntPair pair = StringIntPair(log.urlOrigin, 1);
+			//multimap<string, StringIntPair>::iterator insertIterator = occurences.find(pair(log.urlDest, pair));  //TODO check this thing!
+			if ( insertIterator == occurences.end())
+			{	//Entry not found, we add it to occurences and go for another iteration..
+				occurences.insert(make_pair(log.urlDest, pair));
+				continue;
+			}
+			else
+			{
+
+			}
+
+		}
 
 	}
 
@@ -148,6 +165,12 @@ void Analyser::displayAllLogs ( )
 	{	Log l = (*debut);
 		cout << l << endl;
 	}
+}
+
+bool Analyser::passesFilters(Log &aLog, int time, bool exclude)
+{
+	bool res = !(exclude && isToBeExcluded(aLog)) && !respectsTime(aLog, time) && operationSuccessful(aLog);
+	return res;
 }
 
 bool Analyser::isToBeExcluded(Log &aLog)

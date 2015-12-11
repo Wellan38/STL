@@ -93,6 +93,15 @@ class Analyser
 	// Contract:
 	//	No contract
 
+	bool passesFilters(Log &aLog, int time, bool exclude);
+	// Mode d'emploi:
+	//	Indicates if a log passes the filters of the file extension, the valid code
+	//	and the time limit. This method's role is essentially to make the writing
+	//	more compact as the different filters always apply and are used in every
+	//	computation method.
+	// Contract;
+	//	No contract.
+
 	bool isToBeExcluded(Log & aLog);
 	// Mode d'emploi:
 	//	Returns true if the extension of the destination URL is part of the list of
