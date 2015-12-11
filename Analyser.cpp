@@ -49,7 +49,7 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 		if (!(exclude && isToBeExcluded(it)))
 		{
 
-			if (!(time <= 23 && time >= 0 && respectsTime(it, time)))
+			if (!respectsTime(it, time))
 			{
 				//We look into our temporary data if we have it already
 
@@ -172,7 +172,10 @@ bool Analyser::isToBeExcluded(Log &aLog)
 bool Analyser::respectsTime(Log &aLog, int t)
 {
 	bool res;
-
+	if (t == -1)
+	{
+		return true; //t = -1 => no constraints
+	}
 	if (t != 23)
 	{
 		res = ((aLog.hour - aLog.diffGreenwich) == t) ||
