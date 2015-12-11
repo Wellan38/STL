@@ -19,13 +19,15 @@ using namespace std;
 
 const string BASE_URL = "http://intranet-if.insa-lyon.fr";
 
-const string CSS = ".css";
-const string PNG = ".png";
-const string JS = ".js";
-const string JPG = ".jpg";
-const string GIF = ".gif";
-const string ICO = ".ico";
+const string CSS = ".css";		//extentions of css files
+const string PNG = ".png";		//extentions of image files
+const string JS = ".js";		//extentions of javascript files
+const string JPG = ".jpg";		//extentions of image file
+const string GIF = ".gif";		//extentions of animated image file
+const string ICO = ".ico";		//extentions of image file
 const vector<string> EXTENSIONS = {CSS, PNG, JS, JPG, GIF, ICO}; // extensions to be excluded
+
+const int VALID_CODE = 200;
 
 const int NB_TOP_PAGES_TO_DISPLAY = 10;
 
@@ -46,27 +48,24 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 
 		Log it = *debut;
 
-		if (!(exclude && isToBeExcluded(it)))
+		if (!(exclude && isToBeExcluded(it)) && !respectsTime(it, time) && operationSuccessful(it))
 		{
 
-			if (!respectsTime(it, time))
+			//We look into our temporary data if we have it already
+
+			StringIntPair pair ((*debut).urlDest, 1);
+			list<StringIntPair>::iterator found = find(listOccurences.begin(), listOccurences.end(), pair);
+
+			if (found == listOccurences.end())	//TO check
 			{
-				//We look into our temporary data if we have it already
-
-				StringIntPair pair ((*debut).urlDest, 1);
-				list<StringIntPair>::iterator found = find(listOccurences.begin(), listOccurences.end(), pair);
-
-				if (found == listOccurences.end())	//TO check
-				{
-					#ifdef MAP
-						cout << "The url " << (*debut).urlDest << " was not in the list." << endl;
-					#endif
-					listOccurences.push_back(pair);
-				}
-				else
-				{
-					(*found).nb ++;
-				}
+				#ifdef MAP
+					cout << "The url " << (*debut).urlDest << " was not in the list." << endl;
+				#endif
+				listOccurences.push_back(pair);
+			}
+			else
+			{
+				(*found).nb ++;
 			}
 		}
 	}
@@ -192,18 +191,26 @@ bool Analyser::respectsTime(Log &aLog, int t)
 	return res;
 }
 
+bool Analyser::operationSuccessful(Log &aLog)
+{
+	bool res = (aLog.statusCode == VALID_CODE);
+	return res;
+}
+
 bool Analyser::startsWith(const string& s1, const string& s2)
 {
-    return s2.size() <= s1.size() && s1.compare(0, s2.size(), s2) == 0;
+	bool res = s2.size() <= s1.size() && s1.compare(0, s2.size(), s2) == 0;
+	return res;
 }
 
 bool Analyser::endsWith (const string &fullString, const string &ending)
 {
-    if (fullString.length() >= ending.length()) {
-        return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
-    } else {
-        return false;
+	bool res = false;
+    if (fullString.length() >= ending.length())
+    {
+        res = (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
     }
+    return res;
 }
 
 //------------------------------------------------------------Méthodes protégées

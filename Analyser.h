@@ -107,6 +107,13 @@ class Analyser
 	// Contract:
 	//	t must be between 0 and 23.
 
+	bool operationSuccessful(Log &aLog);
+	// Mode d'emploi:
+	//	Returns true if the code for the request is that of the const VALID_CODE
+	//	False otherwise?
+	// Contract:
+	//	No contract.
+
 	bool startsWith(const string& s1, const string& s2);
 	// Mode d'emploi:
 	//	Returns true if s1 starts with s2, wrong otherwise.
