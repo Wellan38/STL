@@ -192,6 +192,19 @@ void Analyser::displayAllLogs ( )
 	}
 }
 
+ostream & operator << (ostream &os, const Analyser &an)
+{
+	Loglist::const_iterator debut = an.logList.begin();
+		Loglist::const_iterator fin = an.logList.end();
+
+		for ( ; debut != fin; debut ++)
+		{	Log l = (*debut);
+			os << l << endl;
+		}
+
+		return os;
+}
+
 bool Analyser::passesFilters(Log &aLog, int time, bool exclude)
 {
 	bool res = !(exclude && isToBeExcluded(aLog)) && respectsTime(aLog, time) && operationSuccessful(aLog);

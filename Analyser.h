@@ -53,6 +53,8 @@ class Analyser
 	// Destructor:
 	//	No contract.
 
+	friend ostream & operator << (ostream &os, const Analyser &an);
+
 	//---------------------------------------------------------------------PRIVE
 	private :
 	//-----------------------------------------------------------Méthodes privées
