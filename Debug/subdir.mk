@@ -5,18 +5,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../Analyser.cpp \
-../Log.cpp \
-../TestPair.cpp 
+../Launcher.cpp \
+../Log.cpp 
 
 OBJS += \
 ./Analyser.o \
-./Log.o \
-./TestPair.o 
+./Launcher.o \
+./Log.o 
 
 CPP_DEPS += \
 ./Analyser.d \
-./Log.d \
-./TestPair.d 
+./Launcher.d \
+./Log.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

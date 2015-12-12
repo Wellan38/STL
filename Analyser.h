@@ -35,6 +35,20 @@ struct StringIntPair
 	{
 		return os << p.aString << ": " << p.nb;
 	}
+
+	inline StringIntPair operator + (const StringIntPair &p)
+	{
+		StringIntPair res(this->aString + p.aString, this->nb + p.nb);
+		return res;
+	}
+
+	inline StringIntPair& operator = (const StringIntPair &p)
+	{
+		aString = p.aString;
+		nb = p.nb;
+
+		return *this;
+	}
 };
 
 //------------------------------------------------------------------- Constantes
