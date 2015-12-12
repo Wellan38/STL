@@ -6,51 +6,6 @@
 //--------------------------------------------------------- Interfaces utilisées
 #include "Log.h"
 #include <list>
-
-struct StringIntPair
-{
-	string aString;
-	int nb;
-
-	StringIntPair(string aString, int nb) : aString(aString), nb(nb) {}
-
-	friend bool operator < (const StringIntPair &p1, const StringIntPair &p2)
-	{
-		if (p1.nb < p2.nb)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	friend bool operator == (const StringIntPair &p1, const StringIntPair &p2)
-	{
-		return p1.aString == p2.aString;
-	}
-
-	friend ostream& operator << (ostream& os, const StringIntPair& p)
-	{
-		return os << p.aString << ": " << p.nb;
-	}
-
-	inline StringIntPair& operator ++ ( )
-	{
-		nb ++;
-		return this;
-	}
-
-	inline StringIntPair& operator = (const StringIntPair &p)
-	{
-		aString = p.aString;
-		nb = p.nb;
-
-		return *this;
-	}
-};
-
 //------------------------------------------------------------------- Constantes
 //------------------------------------------------------------------------ Types
 using namespace std;
@@ -150,17 +105,90 @@ class Analyser
 	//	No contract
 
 	//-----------------------------------------------------------Attributs privés
+	/*
+	 * The list containing all the logs of the file the Analyser was created with.
+	*/
 	list<Log> logList;
 
 	//--------------------------------------------------------------Classes amies
 
 	friend class Log;
-
-	/*
-	 * The list containing all the logs of the file the Analyser was created with.
-	 */
 };
 
 //-------------------------------------Autres définitions dépendantes de Analyser
+
+struct StringIntPair
+{
+	string aString;
+	int nb;
+
+	StringIntPair(string aString, int nb) : aString(aString), nb(nb) {}
+
+	friend bool operator < (const StringIntPair &p1, const StringIntPair &p2)
+	{
+		if (p1.nb < p2.nb)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	friend bool operator == (const StringIntPair &p1, const StringIntPair &p2)
+	{
+		return p1.aString == p2.aString;
+	}
+
+	friend ostream& operator << (ostream& os, const StringIntPair& p)
+	{
+		return os << p.aString << ": " << p.nb;
+	}
+
+	inline StringIntPair& operator = (const StringIntPair &p)
+	{
+		aString = p.aString;
+		nb = p.nb;
+
+		return *this;
+	}
+
+	//	inline StringIntPair& operator ++ ( )
+	//	{
+	//		nb ++;
+	//		return this;
+	//	}
+};
+
+struct StringPair
+{
+	string s1;
+	string s2;
+
+	StringPair( const string string1, const string string2 ) : s1(string1), s2(string2) {}
+
+	friend bool operator < (const StringPair & p1, const StringPair & p2)
+	{
+		if (p1.s1 < p2.s1)
+		{
+			return true;
+		}
+		else if (p1.s1 == p2.s2)
+		{
+			return p1.s2 < p2.s2;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	friend bool operator == (const StringPair &p1, const StringPair &p2)
+	{
+		bool res = p1.s1 == p2.s1 && p1.s2 == p2.s2;
+		return res;
+	}
+};
 
 #endif // ! defined (XXX_H)
