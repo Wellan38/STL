@@ -51,6 +51,13 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 		if (passesFilters(log, time, exclude))
 		{
 
+			// We check that the destination URL is correct
+
+			if (startsWith((*debut).urlDest, BASE_URL))
+			{
+				log.urlDest.erase(0, BASE_URL.length());
+			}
+
 			//We look into our temporary data if we have it already
 
 			StringIntPair pair (log.urlDest, 1);
@@ -91,12 +98,12 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 
 void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 //Algorithm
-//	We go through the whole logs and count the occurences of each destination URL
+//	We go through the whole logs and count the occurrences of each destination URL
 //	then we send the data wanted into a file under the graphviz syntax.
 {
 	//Each destination url has several origin url, each being associated with a number
 	//			multimap	<String  ,       StringIntPair>
-	multimap<StringIntPair, string> occurences;
+	multimap<StringIntPair, string> occurrences;
 
 	Loglist::const_iterator begin = logList.begin();
 	Loglist::const_iterator end = logList.end();
@@ -106,15 +113,16 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 
 		if (passesFilters(log, time, exclude))
 		{	StringIntPair aPair(log.urlOrigin, 1);
-			multimap<StringIntPair, string>::iterator insertIterator = occurences.find(aPair);  //TODO check this thing!
-			if ( insertIterator == occurences.end())
-			{	//Entry not found, we add it to occurences and go for another iteration..
-				occurences.insert(pair<StringIntPair, string>(aPair, log.urlDest));
+			multimap<StringIntPair, string>::iterator insertIterator = occurrences.find(aPair);
+			if ( insertIterator == occurrences.end())
+			{	//Entry not found, we add it to occurrences and go for another iteration..
+				occurrences.insert(pair<StringIntPair, string>(aPair, log.urlDest));
 				continue;
 			}
 			else
 			{
-
+				//Entry found, hence we raise the number of occurrences by 1
+				insertIterator->first = insertIterator->first + StringIntPair("", 1);
 			}
 
 		}
