@@ -169,7 +169,7 @@ void Analyser::displayAllLogs ( )
 
 bool Analyser::passesFilters(Log &aLog, int time, bool exclude)
 {
-	bool res = !(exclude && isToBeExcluded(aLog)) && !respectsTime(aLog, time) && operationSuccessful(aLog);
+	bool res = !(exclude && isToBeExcluded(aLog)) && respectsTime(aLog, time) && operationSuccessful(aLog);
 	return res;
 }
 
@@ -198,7 +198,7 @@ bool Analyser::respectsTime(Log &aLog, int t)
 	{
 		return true; //t = -1 => no constraints
 	}
-	if (t != 23)
+	else if (t != 23)
 	{
 		res = ((aLog.hour - aLog.diffGreenwich) == t) ||
 			  ((aLog.hour - aLog.diffGreenwich) == t+1 &&
