@@ -122,7 +122,7 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 			else
 			{
 				//Entry found, hence we raise the number of occurrences by 1
-				insertIterator->first = insertIterator->first + StringIntPair("", 1);
+				insertIterator->first ++;
 			}
 
 		}

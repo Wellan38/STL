@@ -36,10 +36,10 @@ struct StringIntPair
 		return os << p.aString << ": " << p.nb;
 	}
 
-	inline StringIntPair operator + (const StringIntPair &p)
+	inline StringIntPair& operator ++ ( )
 	{
-		StringIntPair res(this->aString + p.aString, this->nb + p.nb);
-		return res;
+		nb ++;
+		return this;
 	}
 
 	inline StringIntPair& operator = (const StringIntPair &p)
