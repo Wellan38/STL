@@ -130,9 +130,13 @@ int main ( int argc, char * argv[] )
 void ShowManual ( )
 {
 	cout << "---- TP_STL manual ----" << endl;
-	cout << "Apache log file analyser" << endl << endl;
+	cout << "Apache log file analyser" << endl;
+	cout << "This program allows you to display the top ten most visited pages"<< endl;
+	cout << "of your apache server. The computation is done by providing your "<< endl;
+	cout << "apache log file." << endl;
+	cout << "Several other options are listed below." << endl << endl;
 
-	cout << "USAGE: ./TP_STL [OPTIONS]... FILE" << endl << endl;
+	cout << "USAGE:     ./TP_STL [OPTIONS]... FILE" << endl << endl;
 
 	cout << "OPTIONS:" << endl << endl;
 	cout << "   -e        :exclude the javascript, css an image files from the";
