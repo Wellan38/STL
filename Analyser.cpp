@@ -13,6 +13,7 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 #include <exception>
+#include <set>
 //-------------------------------------------------------------Include personnel
 #include "Analyser.h"
 //------------------------------------------------------------------- Constantes
@@ -101,33 +102,40 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 //	We go through the whole logs and count the occurrences of each destination URL
 //	then we send the data wanted into a file under the graphviz syntax.
 {
-	//Each destination url has several origin url, each being associated with a number
-	//			multimap	<String  ,       StringIntPair>
-	multimap<StringIntPair, string> occurrences;
-
+	map<StringPair, int> occurences;		//Associates the travel from a page to an other to an int.
 	Loglist::const_iterator begin = logList.begin();
 	Loglist::const_iterator end = logList.end();
 
 	for ( ; begin != end; begin ++)
-	{	Log log = (*begin);
-
+	{
+		Log log = (*begin);
 		if (passesFilters(log, time, exclude))
-		{	StringIntPair aPair(log.urlOrigin, 1);
-			multimap<StringIntPair, string>::iterator insertIterator = occurrences.find(aPair);
-			if ( insertIterator == occurrences.end())
-			{	//Entry not found, we add it to occurrences and go for another iteration..
-				occurrences.insert(pair<StringIntPair, string>(aPair, log.urlDest));
-				continue;
+		{
+			StringPair key (log.urlDest, log.urlOrigin);
+			map<StringPair, int>::iterator found = occurences.find(key);
+
+			if ( found == occurences.end() )
+			{
+				occurences[key] = 1;
 			}
 			else
 			{
-				//Entry found, hence we raise the number of occurrences by 1
-				insertIterator->first ++;
+				occurences[key]++;
 			}
 
 		}
-
 	}
+
+	//Writing out the file.
+	output << "digraph {" << endl;
+	map<StringPair, int>::const_iterator nodesIterator = occurences.begin();
+	for ( ; nodesIterator != occurences.end() ; nodesIterator ++)
+	{
+		output << "<" << nodesIterator->first.s2 << "> -> <" <<nodesIterator->first.s1;
+		output << "> [label=" << nodesIterator->second << "];" << endl;
+	}
+
+	output << "}" << endl;
 
 }
 //--------------------------------------------------------Surcharge d'opérateurs
