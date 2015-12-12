@@ -111,6 +111,15 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 		Log log = (*begin);
 		if (passesFilters(log, time, exclude))
 		{
+			if (startsWith(log.urlOrigin, BASE_URL))
+			{
+				log.urlDest.erase(0, BASE_URL.length());
+			}
+			if (startsWith(log.urlDest, BASE_URL))
+			{
+				log.urlOrigin.erase(0, BASE_URL.length());
+			}
+
 			StringPair key (log.urlDest, log.urlOrigin);
 			map<StringPair, int>::iterator found = occurences.find(key);
 
