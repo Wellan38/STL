@@ -18,7 +18,7 @@ const string EXCLUDE = string("-e");
 const string GRAPH = string("-g");
 //------------------------------------------------------------------------PUBLIC
 //------------------------------------------------------------Méthodes publiques
-extern void ShowManual ( );
+void ShowManual ( );
 
 int main ( int argc, char * argv[] )
 // Algorithm:
@@ -34,7 +34,12 @@ int main ( int argc, char * argv[] )
 	}
 #endif
 
-	//No argument provided, showing the manual
+	//default configuration
+	bool exclude = false;		//value of option EXCLUDE
+	bool graph = false;			//value of option GRAPH
+	int time = -1;				//value of option TIME, -1 meaning no filter
+	ofstream * grapOutputStream;//outputstream for the graphviz generation.
+
 	if ( argc == 1)
 	{
 #ifdef TEST
@@ -45,11 +50,6 @@ int main ( int argc, char * argv[] )
 	else
 	{	//We go through all the arguments to detect all the options
 		int counter = 1;
-
-		//default configuration
-		bool exclude = false;		//value of option EXCLUDE
-		bool graph = false;			//value of option GRAPH
-		int time = -1;				//value of option TIME, -1 meaning no filter
 
 		while (counter < argc -1 )	//while loop but keeping the the last argument as it is supposed to be the file to analyse.
 		{
@@ -95,7 +95,10 @@ int main ( int argc, char * argv[] )
 				counter ++;
 				if ( counter < argc - 1 )
 				{
-					//TODO get the file name / try to open the file -> stream?
+					//Get the file name and try to open the file -> stream?
+					char * outputName = argv[counter];
+					grapOutputStream = new ofstream(outputName);
+
 				}
 				else
 				{
@@ -114,8 +117,13 @@ int main ( int argc, char * argv[] )
 			cout << "Log file <" << argv[argc-1] << "> opening succeeded" << endl;
 #else
 			Analyser analyser(logFile);
-			//Put the methods ... TODO
+			if ( graph )
+			{
+				analyser.GenerateGraphViz(*grapOutputStream, exclude, time);
+				delete grapOutputStream;
+			}
 			analyser.DisplayTenMostVisited(exclude, time);
+
 #endif
 
 		}
