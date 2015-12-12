@@ -19,12 +19,12 @@ using namespace std;
 
 const string BASE_URL = "http://intranet-if.insa-lyon.fr";
 
-const string CSS = ".css";		//extentions of css files
-const string PNG = ".png";		//extentions of image files
-const string JS = ".js";		//extentions of javascript files
-const string JPG = ".jpg";		//extentions of image file
-const string GIF = ".gif";		//extentions of animated image file
-const string ICO = ".ico";		//extentions of image file
+const string CSS = ".css";		//extensions of css files
+const string PNG = ".png";		//extensions of image files
+const string JS = ".js";		//extensions of javascript files
+const string JPG = ".jpg";		//extensions of image file
+const string GIF = ".gif";		//extensions of animated image file
+const string ICO = ".ico";		//extensions of image file
 const vector<string> EXTENSIONS = {CSS, PNG, JS, JPG, GIF, ICO}; // extensions to be excluded
 
 const int VALID_CODE = 200;
@@ -96,7 +96,7 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 {
 	//Each destination url has several origin url, each being associated with a number
 	//			multimap	<String  ,       StringIntPair>
-	multimap<string, StringIntPair> occurences;
+	multimap<StringIntPair, string> occurences;
 
 	Loglist::const_iterator begin = logList.begin();
 	Loglist::const_iterator end = logList.end();
@@ -105,11 +105,11 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 	{	Log log = (*begin);
 
 		if (passesFilters(log, time, exclude))
-		{	StringIntPair pair = StringIntPair(log.urlOrigin, 1);
-			//multimap<string, StringIntPair>::iterator insertIterator = occurences.find(pair(log.urlDest, pair));  //TODO check this thing!
+		{	StringIntPair aPair(log.urlOrigin, 1);
+			multimap<StringIntPair, string>::iterator insertIterator = occurences.find(aPair);  //TODO check this thing!
 			if ( insertIterator == occurences.end())
 			{	//Entry not found, we add it to occurences and go for another iteration..
-				occurences.insert(make_pair(log.urlDest, pair));
+				occurences.insert(pair<StringIntPair, string>(aPair, log.urlDest));
 				continue;
 			}
 			else
