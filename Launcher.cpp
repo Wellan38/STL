@@ -38,7 +38,7 @@ int main ( int argc, char * argv[] )
 	bool exclude = false;		//value of option EXCLUDE
 	bool graph = false;			//value of option GRAPH
 	int time = -1;				//value of option TIME, -1 meaning no filter
-	ofstream * grapOutputStream;//outputstream for the graphviz generation.
+	char * outputName;			//name for the graphviz file to generate.
 
 	if ( argc == 1)
 	{
@@ -96,9 +96,8 @@ int main ( int argc, char * argv[] )
 				if ( counter < argc - 1 )
 				{
 					//Get the file name and try to open the file -> stream?
-					char * outputName = argv[counter];
-					grapOutputStream = new ofstream(outputName);
-
+					outputName = argv[counter];
+					graph = true;
 				}
 				else
 				{
@@ -119,8 +118,11 @@ int main ( int argc, char * argv[] )
 			Analyser analyser(logFile);
 			if ( graph )
 			{
-				analyser.GenerateGraphViz(*grapOutputStream, exclude, time);
-				delete grapOutputStream;
+				ofstream graphOutputStream;
+				graphOutputStream.open(outputName, ios::out);
+				analyser.GenerateGraphViz(graphOutputStream, exclude, time);
+				graphOutputStream.close();
+				cout << "Dot-file " << outputName << " generated." << endl;
 			}
 			analyser.DisplayTenMostVisited(exclude, time);
 
