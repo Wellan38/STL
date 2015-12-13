@@ -1,0 +1,1 @@
+Ce test vérifie que l'option -g génère bien un fichier .dot bien formé, et correspondant aux logs du fichier d'entrée.

@@ -1,0 +1,1 @@
+Ce test vérifie que si un fichier contenant moins de 10 logs est fourni en entrée, le programme est capable de les traiter.

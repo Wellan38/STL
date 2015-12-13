@@ -1,0 +1,1 @@
+Ce test vérifie que si un fichier contenant plus de 10 pages différentes, seules les 10 plus visitées (sauf en cas d'égalité entre les pages) seront affichées.
