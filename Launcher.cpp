@@ -38,7 +38,7 @@ int main ( int argc, char * argv[] )
 	bool exclude = false;		//value of option EXCLUDE
 	bool graph = false;			//value of option GRAPH
 	int time = -1;				//value of option TIME, -1 meaning no filter
-	char * outputName;			//name for the graphviz file to generate.
+	char * outputName = {'\0'};	//name for the graphviz file to generate.
 
 	if ( argc == 1)
 	{
