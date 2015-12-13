@@ -3,6 +3,7 @@
 *.lo
 *.o
 *.obj
+*.d
 
 # Precompiled Headers
 *.gch
@@ -26,7 +27,4 @@
 *.exe
 *.out
 *.app
-/SClasseG.cpp
-/SClasseG.h
-/TestLog/
-/Release/
+TP_STL
