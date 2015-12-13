@@ -16,6 +16,8 @@ using namespace std;
 const string TIME = string("-t");
 const string EXCLUDE = string("-e");
 const string GRAPH = string("-g");
+
+const string CONFIG_FILE_NAME = string("TP_STL.cfg");
 //------------------------------------------------------------------------PUBLIC
 //------------------------------------------------------------Méthodes publiques
 void ShowManual ( );
@@ -115,7 +117,15 @@ int main ( int argc, char * argv[] )
 #ifdef TEST
 			cout << "Log file <" << argv[argc-1] << "> opening succeeded" << endl;
 #else
-			Analyser analyser(logFile);
+			//trying to load the configuration file.
+			ifstream config(CONFIG_FILE_NAME);
+			string baseUrl = "";
+			if (config)
+			{
+				config >> baseUrl;
+			}
+
+			Analyser analyser(logFile, baseUrl);
 			if ( graph )
 			{
 				ofstream graphOutputStream;
