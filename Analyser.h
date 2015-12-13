@@ -6,7 +6,22 @@
 //--------------------------------------------------------- Interfaces utilisées
 #include "Log.h"
 #include <list>
+#include <vector>
 //------------------------------------------------------------------- Constantes
+
+const string BASE_URL_DEFAULT = "http://intranet-if.insa-lyon.fr";
+
+const string CSS = ".css";		//extensions of css files
+const string PNG = ".png";		//extensions of image files
+const string JS = ".js";		//extensions of javascript files
+const string JPG = ".jpg";		//extensions of image file
+const string GIF = ".gif";		//extensions of animated image file
+const string ICO = ".ico";		//extensions of image file
+const vector<string> EXTENSIONS = {CSS, PNG, JS, JPG, GIF, ICO}; // extensions to be excluded
+
+const int VALID_CODE = 200;
+
+const int NB_TOP_PAGES_TO_DISPLAY = 10;
 //------------------------------------------------------------------------ Types
 using namespace std;
 typedef list<Log> Loglist;
@@ -42,7 +57,7 @@ class Analyser
 	//	t in [0,23]. If t isn't in the range, no time restriction is set.
 	//----------------------------------------------------Surcharge d'opérateurs
 	//-----------------------------------------------Constructeurs - Destructeur
-	Analyser ( ifstream &input);
+	Analyser ( ifstream &input, string baseUrl = BASE_URL_DEFAULT);
 	// Mode d'emploi:
 	//	Allows to create a new analyser upon a default input file
 	// Contrat:
@@ -115,6 +130,7 @@ class Analyser
 	 * The list containing all the logs of the file the Analyser was created with.
 	*/
 	list<Log> logList;
+	const string BASE_URL;
 
 	//--------------------------------------------------------------Classes amies
 };

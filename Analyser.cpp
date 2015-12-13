@@ -7,10 +7,8 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <iterator>
 #include <map>
-#include <vector>
 #include <algorithm>
 #include <exception>
 #include <set>
@@ -18,19 +16,6 @@ using namespace std;
 #include "Analyser.h"
 //------------------------------------------------------------------- Constantes
 
-const string BASE_URL = "http://intranet-if.insa-lyon.fr";
-
-const string CSS = ".css";		//extensions of css files
-const string PNG = ".png";		//extensions of image files
-const string JS = ".js";		//extensions of javascript files
-const string JPG = ".jpg";		//extensions of image file
-const string GIF = ".gif";		//extensions of animated image file
-const string ICO = ".ico";		//extensions of image file
-const vector<string> EXTENSIONS = {CSS, PNG, JS, JPG, GIF, ICO}; // extensions to be excluded
-
-const int VALID_CODE = 200;
-
-const int NB_TOP_PAGES_TO_DISPLAY = 10;
 
 //------------------------------------------------------------------------PUBLIC
 
@@ -151,7 +136,7 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 }
 //--------------------------------------------------------Surcharge d'opérateurs
 //---------------------------------------------------Constructeurs - Destructeur
-Analyser::Analyser ( ifstream &input )
+Analyser::Analyser ( ifstream &input, string baseUrl ) : BASE_URL(baseUrl)
 // Algorithme
 //	We try to get all the logs from the file whose name is given as a parameter.
 {
