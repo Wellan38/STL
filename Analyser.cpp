@@ -53,15 +53,15 @@ void Analyser::DisplayTenMostVisited ( bool exclude, int time )
 		{
 
 			// We check that the destination URL is correct
-
-			if (startsWith((*debut).urlDest, BASE_URL))
+			string destination = log.urlDest;
+			if (startsWith(destination, BASE_URL))
 			{
-				log.urlDest.erase(0, BASE_URL.length());
+				destination.erase(0, BASE_URL.length());
 			}
 
 			//We look into our temporary data if we have it already
 
-			StringIntPair pair (log.urlDest, 1);
+			StringIntPair pair (destination, 1);
 			list<StringIntPair>::iterator found = find(listOccurences.begin(), listOccurences.end(), pair);
 
 			if (found == listOccurences.end())
@@ -111,16 +111,19 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 		Log log = (*begin);
 		if (passesFilters(log, time, exclude))
 		{
-			if (startsWith(log.urlOrigin, BASE_URL))
+			string destination = log.urlDest;
+			string origin = log.urlOrigin;
+
+			if (startsWith(destination, BASE_URL))
 			{
-				log.urlDest.erase(0, BASE_URL.length());
+				destination.erase(0, BASE_URL.length());
 			}
-			if (startsWith(log.urlDest, BASE_URL))
+			if (startsWith(origin, BASE_URL))
 			{
-				log.urlOrigin.erase(0, BASE_URL.length());
+				origin.erase(0, BASE_URL.length());
 			}
 
-			StringPair key (log.urlDest, log.urlOrigin);
+			StringPair key (destination, origin);
 			map<StringPair, int>::iterator found = occurences.find(key);
 
 			if ( found == occurences.end() )
@@ -145,7 +148,6 @@ void Analyser::GenerateGraphViz ( ofstream &output, bool exclude, int time)
 	}
 
 	output << "}" << endl;
-
 }
 //--------------------------------------------------------Surcharge d'opérateurs
 //---------------------------------------------------Constructeurs - Destructeur
