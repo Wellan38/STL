@@ -155,6 +155,10 @@ void ShowManual ( )
 	cout << "This program allows you to display the top ten most visited pages"<< endl;
 	cout << "of your apache server. The computation is done by providing your "<< endl;
 	cout << "apache log file." << endl;
+	cout << "For consistent results you should have a TP_STL.cfg file in your" << endl;
+	cout << "current directory containing in one line the base url of your server." << endl;
+	cout << "For instance, if your server is: http://intranet-if.insa-lyon.fr/%%%%" << endl;
+	cout << "The file should contain http://intranet-if.insa-lyon.fr" << endl << endl;
 	cout << "Several other options are listed below." << endl << endl;
 
 	cout << "USAGE:     ./TP_STL [OPTIONS]... FILE" << endl << endl;
