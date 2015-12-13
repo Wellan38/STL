@@ -1,6 +1,0 @@
-3 arguments ont été passés en paramètre.
-./../../TestMain/TP_STL
--e
-logfile
-Parameter -e detected.
-Log file <logfile> opening succeeded

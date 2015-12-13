@@ -1,2 +1,0 @@
-Error: value not valid for -t option:42
-Value should be in the [0,23] interval

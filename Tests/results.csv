@@ -1,11 +1,11 @@
 Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
-Test0.1;2;2;2;2;1
-Test0.2;2;2;2;2;1
-Test0.3;2;2;2;2;1
-Test0.4;2;2;2;2;1
-Test0.5;2;2;2;2;1
-Test0.6;2;2;2;2;1
-Test0.7;2;2;2;2;1
+Test0.1;2;1;2;2;1
+Test0.2;2;1;1;2;1
+Test0.3;2;1;1;2;1
+Test0.4;2;1;1;2;1
+Test0.5;2;1;1;2;1
+Test0.6;2;1;1;2;1
+Test0.7;2;1;1;2;1
 Test1.1;2;1;2;2;1
 Test1.2;2;1;2;2;1
 Test2.1;2;2;2;2;1

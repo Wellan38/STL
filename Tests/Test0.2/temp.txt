@@ -1,3 +1,0 @@
-2 arguments ont été passés en paramètre.
-./../../TestMain/TP_STL
-logfile

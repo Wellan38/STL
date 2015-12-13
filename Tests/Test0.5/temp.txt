@@ -1,7 +1,0 @@
-4 arguments ont été passés en paramètre.
-./../../TestMain/TP_STL
--t
-42
-logfile
-Parameter -t detected.
-The time constraint has a value of:42
