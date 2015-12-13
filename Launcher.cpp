@@ -138,6 +138,7 @@ int main ( int argc, char * argv[] )
 }
 
 void ShowManual ( )
+//Algorithm
 {
 	cout << "---- TP_STL manual ----" << endl;
 	cout << "Apache log file analyser" << endl;

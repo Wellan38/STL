@@ -176,6 +176,7 @@ Analyser::Analyser ( ifstream &input )
 }
 
 Analyser::~Analyser ( )
+//Algorithm
 {
 #ifdef MAP
 	cout << "-------Destruction de Analyser" << endl;
@@ -185,6 +186,7 @@ Analyser::~Analyser ( )
 
 //-------------------------------------------------------------------------PRIVE
 void Analyser::displayAllLogs ( )
+//Algorithm
 {	Loglist::const_iterator debut = logList.begin();
 	Loglist::const_iterator fin = logList.end();
 
@@ -195,6 +197,7 @@ void Analyser::displayAllLogs ( )
 }
 
 ostream & operator << (ostream &os, const Analyser &an)
+//Algorithm
 {
 	Loglist::const_iterator debut = an.logList.begin();
 		Loglist::const_iterator fin = an.logList.end();
@@ -208,12 +211,14 @@ ostream & operator << (ostream &os, const Analyser &an)
 }
 
 bool Analyser::passesFilters(Log &aLog, int time, bool exclude)
+//Algorithm
 {
 	bool res = !(exclude && isToBeExcluded(aLog)) && respectsTime(aLog, time) && operationSuccessful(aLog);
 	return res;
 }
 
 bool Analyser::isToBeExcluded(Log &aLog)
+//Algorithm
 {
 	bool res = false;
 
@@ -232,6 +237,7 @@ bool Analyser::isToBeExcluded(Log &aLog)
 }
 
 bool Analyser::respectsTime(Log &aLog, int t)
+//Algorithm
 {
 	bool res;
 	if (t == -1)
@@ -255,18 +261,21 @@ bool Analyser::respectsTime(Log &aLog, int t)
 }
 
 bool Analyser::operationSuccessful(Log &aLog)
+//Algorithm
 {
 	bool res = (aLog.statusCode == VALID_CODE);
 	return res;
 }
 
 bool Analyser::startsWith(const string& s1, const string& s2)
+//Algorithm
 {
 	bool res = s2.size() <= s1.size() && s1.compare(0, s2.size(), s2) == 0;
 	return res;
 }
 
 bool Analyser::endsWith (const string &fullString, const string &ending)
+//Algorithm
 {
 	bool res = false;
     if (fullString.length() >= ending.length())

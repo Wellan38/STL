@@ -34,7 +34,7 @@ const char SEP_SLASH = '/';
 //-------------------------------------------------------- Fonctions amies
 
 istream & operator >> ( istream &is, Log &aLog )
-// Algorithme :
+// Algorithm:
 //
 {
 	string temp;
@@ -125,10 +125,10 @@ istream & operator >> ( istream &is, Log &aLog )
 	getline(is, aLog.navigatorId, SEP_QUOTE);
 
 	return is;
-} //----- Fin de operator >>
+}
 
 ostream & operator << ( ostream &os, Log &aLog )
-// Algorithme :
+// Algorithm:
 //
 {
 	os << aLog.IpAddress << endl;
@@ -149,21 +149,16 @@ ostream & operator << ( ostream &os, Log &aLog )
 	os << aLog.navigatorId;
 
 	return os;
-} //----- Fin de operator >>
+}
 
 //----------------------------------------------------- Méthodes publiques
-// type Log::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 
-
 //-------------------------------------------- Constructeurs - destructeur
+
 Log::Log ( const Log & aLog ) : IpAddress(aLog.IpAddress),
 		userLogName(aLog.userLogName), authenticatedUser(aLog.authenticatedUser),
 		day(aLog.day), month(aLog.month), year(aLog.year), hour(aLog.hour),
@@ -171,7 +166,7 @@ Log::Log ( const Log & aLog ) : IpAddress(aLog.IpAddress),
 		actionType(aLog.actionType), urlDest(aLog.urlDest), urlOrigin(aLog.urlOrigin),
 		statusCode(aLog.statusCode), dataSize(aLog.dataSize),
 		navigatorId(aLog.navigatorId)
-// Algorithme :
+// Algorithm:
 //
 {
 #ifdef MAP
@@ -179,11 +174,11 @@ Log::Log ( const Log & aLog ) : IpAddress(aLog.IpAddress),
 #endif
 
 
-} //----- Fin de Log (constructeur de copie)
+}
 
 
 Log::Log ( )
-// Algorithme :
+// Algorithm:
 //
 {
 #ifdef MAP
@@ -210,17 +205,17 @@ Log::Log ( )
         dataSize = 0;
 
         navigatorId = "";
-} //----- Fin de Log
+}
 
 
 Log::~Log ( )
-// Algorithme :
+// Algorithm:
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Log>" << endl;
 #endif
-} //----- Fin de ~Log
+}
 
 
 //------------------------------------------------------------------ PRIVE

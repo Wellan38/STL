@@ -54,6 +54,10 @@ class Analyser
 	//	No contract.
 
 	friend ostream & operator << (ostream &os, const Analyser &an);
+	// Mode d'emploi:
+		//	Displays all the logs one by one.
+		// Contrat:
+		//	No contract.
 
 	//---------------------------------------------------------------------PRIVE
 	private :
@@ -153,12 +157,6 @@ struct StringIntPair
 
 		return *this;
 	}
-
-	//	inline StringIntPair& operator ++ ( )
-	//	{
-	//		nb ++;
-	//		return this;
-	//	}
 };
 
 struct StringPair

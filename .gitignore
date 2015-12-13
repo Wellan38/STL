@@ -28,3 +28,4 @@
 *.out
 *.app
 TP_STL
+/Release/

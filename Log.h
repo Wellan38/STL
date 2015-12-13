@@ -33,11 +33,6 @@ class Log
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -50,11 +45,11 @@ public:
 
 
     friend ostream & operator << ( ostream &os, Log &aLog );
-        // Mode d'emploi :
-        //		Displays all the attributes of the Log, line by line.
-        //
-        // Contrat :
-        //		aLog should be at least initialized properly.
+    // Mode d'emploi :
+    //		Displays all the attributes of the Log, line by line.
+    //
+    // Contrat :
+    //		aLog should be at least initialized properly.
 
 
 //-------------------------------------------- Constructeurs - destructeur
