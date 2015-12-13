@@ -113,8 +113,6 @@ class Analyser
 	list<Log> logList;
 
 	//--------------------------------------------------------------Classes amies
-
-	friend class Log;
 };
 
 //-------------------------------------Autres définitions dépendantes de Analyser
